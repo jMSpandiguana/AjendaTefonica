@@ -50,20 +50,56 @@ public class CrearUsuarioController extends HttpServlet {
 		String url = null;
 		try {
 			System.out.println("Nombre: " + request.getParameter("nombre"));
-			usuario.setCedula(String.valueOf(request.getParameter("cedula")));
-			usuario.setNombre(String.valueOf(request.getParameter("nombre")));
-			usuario.setApellido(String.valueOf(request.getParameter("apellido")));
-			usuario.setCorreo(String.valueOf(request.getParameter("email")));
-			usuario.setContrasena(String.valueOf(request.getParameter("pass")));
-			usuario.setTelefonos(null);
-			usuarioDAO.create(usuario);
+
+			if (verificarCedula(String.valueOf(request.getParameter("cedula"))) == true) {
+				System.out.println("Nombre: " + request.getParameter("cedula"));
+				usuario.setCedula(String.valueOf(request.getParameter("cedula")));
+				usuario.setNombre(String.valueOf(request.getParameter("nombre")));
+				usuario.setApellido(String.valueOf(request.getParameter("apellido")));
+				usuario.setCorreo(String.valueOf(request.getParameter("email")));
+				usuario.setContrasena(String.valueOf(request.getParameter("pass")));
+				usuario.setTelefonos(null);
+				usuarioDAO.create(usuario);
+				url = "/principal.jsp";
+			}else {
+				System.out.println("CEDULA INCORRECTA");
+				url = "/errorCedula.jsp";
+			}
+
 			
-				
-			url = "/principal.jsp";
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			url = "/error.jsp";
 		}
+
 		getServletContext().getRequestDispatcher(url).forward(request, response);
+	}
+
+	public boolean verificarCedula(String cedula) {
+		int total = 0;
+		int tamanoLongitudCedula = 10;
+		int[] coeficientes = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
+		int numeroProviancias = 24;
+		int tercerdigito = 6;
+		if (cedula.matches("[0-9]*") && cedula.length() == tamanoLongitudCedula) {
+			int provincia = Integer.parseInt(cedula.charAt(0) + "" + cedula.charAt(1));
+			int digitoTres = Integer.parseInt(cedula.charAt(2) + "");
+			if ((provincia > 0 && provincia <= numeroProviancias) && digitoTres < tercerdigito) {
+				int digitoVerificadorRecibido = Integer.parseInt(cedula.charAt(9) + "");
+				for (int i = 0; i < coeficientes.length; i++) {
+					int valor = Integer.parseInt(coeficientes[i] + "") * Integer.parseInt(cedula.charAt(i) + "");
+					total = valor >= 10 ? total + (valor - 9) : total + valor;
+				}
+				int digitoVerificadorObtenido = total >= 10 ? (total % 10) != 0 ? 10 - (total % 10) : (total % 10)
+						: total;
+				if (digitoVerificadorObtenido == digitoVerificadorRecibido) {
+					return true;
+				}
+			}
+			return false;
+		}
+		return false;
 	}
 
 }

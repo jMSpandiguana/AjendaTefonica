@@ -1,15 +1,15 @@
 package ec.edu.ups.controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 import ec.edu.ups.dao.DAOFactory;
 import ec.edu.ups.dao.TelefonoDAO;
 import ec.edu.ups.dao.UsuarioDAO;
@@ -17,10 +17,10 @@ import ec.edu.ups.modelo.Telefono;
 import ec.edu.ups.modelo.Usuario;
 
 /**
- * Servlet implementation class BuscarUsuarioContactoController
+ * Servlet implementation class BuscarUsuarioContactoController1
  */
-@WebServlet("/BuscarUsuarioContactoController")
-public class BuscarUsuarioContactoController extends HttpServlet {
+@WebServlet("/BuscarUsuarioContactoController1")
+public class BuscarUsuarioContactoController1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UsuarioDAO usuarioDAO;
 	private Usuario usuario;
@@ -30,7 +30,7 @@ public class BuscarUsuarioContactoController extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public BuscarUsuarioContactoController() {
+	public BuscarUsuarioContactoController1() {
 		super();
 		usuarioDAO = DAOFactory.getFactory().getUsuario();
 		usuario = new Usuario();
@@ -39,19 +39,21 @@ public class BuscarUsuarioContactoController extends HttpServlet {
 		telefono = new Telefono();
 	}
 
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String url = null;
 		String identificador = request.getParameter("identificacion");
 		String uscedula = request.getParameter("cedula");
 		System.out.println("cedula usuario " + uscedula);
+
 		for (Usuario user : usuarioDAO.find()) {
 			if (user.getCedula().equals(uscedula)) {
+
 			} else {
 				if (user.getCedula().equals(identificador) || user.getCorreo().equals(identificador)) {
 					usuario = user;
@@ -65,7 +67,7 @@ public class BuscarUsuarioContactoController extends HttpServlet {
 					user.setTelefonos(telefonos);
 					request.setAttribute("contacto", user);
 					System.out.println(user);
-					url = "/principal.jsp";
+					url = "/buscarTelefono.jsp";
 					break;
 				}
 			}
@@ -80,7 +82,7 @@ public class BuscarUsuarioContactoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 	}
 
 }

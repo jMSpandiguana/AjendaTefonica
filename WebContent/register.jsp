@@ -35,8 +35,9 @@
 							<div class="card-body">
 								<div class="modal-body">
 									<div class="form-group">
-										<label for="cedula">Cedula</label> <input type="text"
+										<label for="cedula">Cedula</label> <input type="number"
 											class="form-control" name="cedula" id="cedula" required>
+																				
 									</div>
 									<div class="form-group">
 										<label for="nombre">Nombre</label> <input type="text"

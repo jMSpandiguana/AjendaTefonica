@@ -14,7 +14,7 @@
 <script src="https://kit.fontawesome.com/72ad08e112.js"
 	crossorigin="anonymous"></script>
 
-<title>Pagina Principal</title>
+<title>Buscar Telefono</title>
 </head>
 <body>
 	<header id="main-header" class="py-2 bg-dark text-white">
@@ -22,23 +22,32 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h1>
-						<i class="fas fa-phone-alt"></i> Agenda Telefonica
+						<i class="fas fa-phone-alt"></i> Buscar Telefono
 					</h1>
 				</div>
 			</div>
 		</div>
 	</header>
-
 	<!-- Botones de navegacion -->
-	<jsp:include page="WEB-INF/paginas/comunes/botoIniciarSecion.jsp"></jsp:include>
-
+	<section id="actions" class="py-4 mb-4 bg-light ">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<a href="/AgendaTelefonica/RegresarControler"
+						class="btn btn-ligth btn-block"> <i class="fas fa-arrow-left"></i>
+						Regresar
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
 	<!-- Seccion de Listar Usuarios -->
 	<section id="actions" class="py-4 mb-4 bg-light ">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
 					<form id="form-1"
-						action="${pageContext.request.contextPath}/BuscarUsuarioContactoController"
+						action="${pageContext.request.contextPath}/BuscarUsuarioContactoController1"
 						method="get">
 						<legend>Buscar Telefono</legend>
 						<div class="mb-3">
@@ -56,7 +65,6 @@
 		</div>
 
 	</section>
-
 	<section id="usuarios">
 		<div class="container">
 			<div class="row">
@@ -77,14 +85,10 @@
 
 							<thead class="bg-dark text-white">
 								<tr>
-
 									<th>Tipo</th>
 									<th>Telelefono</th>
 									<th>Operadora</th>
 									<th></th>
-									
-
-
 								</tr>
 							</thead>
 							<tbody>
@@ -94,7 +98,7 @@
 										<td>${t.tipo}</td>
 										<td>${t.numero}</td>
 										<td>${t.operadora}</td>
-										
+
 										<td><a href="tel:${t.numero}" class="btn btn-secondary">
 												<i class="fas fa-phone-volume"></i>
 										</a></td>
@@ -106,16 +110,7 @@
 						</table>
 					</div>
 				</div>
-				<div class="col-md-2">
-					<div class="card text-center bg-dark text-white mb-3">
-						<div class="card-body">
-							<h4>Total usuarios</h4>
-							<h5 class="display-4">
-								<i class="fas fa-users"></i> ${totalUsuarios}
-							</h5>
-						</div>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</section>

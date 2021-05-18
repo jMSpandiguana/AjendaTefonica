@@ -46,7 +46,9 @@ public class CrearTelefonoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		
+		
 	}
 
 	/**
@@ -73,7 +75,7 @@ public class CrearTelefonoController extends HttpServlet {
 				telefono.setOperadora(operadora);
 				telefono.setUsuario(usuario);
 				telefonoDAO.create(telefono);
-				
+				response.sendRedirect("/AgendaTelefonica/crearTelefono.jsp");
 				
 			}else {
 				System.out.println("Usuario no encontrado.");

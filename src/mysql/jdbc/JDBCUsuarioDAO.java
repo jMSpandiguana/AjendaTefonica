@@ -70,12 +70,13 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, String> implements U
 
 	@Override
 	public void update(Usuario usuario) {
-		conexionUno.update("UPDATE USUARIO SET USU_NOMBRE='" + usuario.getNombre() + "'," + usuario.getApellido()
-				+ "','" + usuario.getCorreo() + "','" + usuario.getContrasena() + "' WHERE USU_CEDULA='"
-				+ usuario.getCedula() + "'");
+		conexionUno.update("UPDATE USUARIO SET "
+	                + "	usu_nombre = '" + usuario.getNombre() + "',"
+	                + "	usu_apellido = '" + usuario.getApellido() + "',"
+	                + " usu_correo ='" + usuario.getCorreo() +"',"
+	                + "	usu_contrasena  = '" + usuario.getContrasena() + "'"
+	                + "	WHERE usu_cedula = '" + usuario.getCedula() + "';");
 	}
-
-	@Override
 	public void delete(Usuario usuario) {
 		// TODO Auto-generated method stub
 		conexionUno.update("DELETE FROM USUARIO WHERE USU_CEDULA='" + usuario.getCedula() + "';");

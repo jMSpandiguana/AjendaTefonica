@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import ec.edu.ups.dao.UsuarioDAO;
 import ec.edu.ups.modelo.Usuario;
+import mysql.jdbc.JDBCTelefonoDAO;
+import mysql.jdbc.JDBCUsuarioDAO;
 
 /**
  * Servlet implementation class EditarTelefonoController
@@ -36,8 +38,13 @@ public class EditarUsuarioController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String cedula =request.getParameter("codigo");
+        usuarioDAO = new JDBCUsuarioDAO();
+        usuario =usuarioDAO.read(cedula);
+       
+        request.setAttribute("usuario", usuario);
+       
+        request.getRequestDispatcher("/editarUsuario.jsp").forward(request, response);
 	}
 
 	/**
@@ -48,7 +55,9 @@ public class EditarUsuarioController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String url = null;
+		String url = "text";
+		usuarioDAO = new JDBCUsuarioDAO();
+		usuario = new Usuario();
 		try {
 			System.out.println("Nombre: " + request.getParameter("nombre"));
 			usuario.setCedula(String.valueOf(request.getParameter("cedula")));
@@ -59,9 +68,11 @@ public class EditarUsuarioController extends HttpServlet {
 			usuario.setTelefonos(null);
 			usuarioDAO.update(usuario);
 
-			url = "/principal.jsp";
+			url = "/editarUsuario.jsp";
 		} catch (Exception e) {
-			url = "/error.jsp";
+			//url = "/error.jsp";
+			e.printStackTrace();
+		
 		}
 		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}

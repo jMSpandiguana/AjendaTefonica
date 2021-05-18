@@ -50,10 +50,24 @@ public class LoginUsuarioController extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		System.out.println("Conculta. " + request);
 		if (request.getParameter("logout") != null) {
-			 session.invalidate();
+			session.invalidate();
 			response.sendRedirect("/AgendaTelefonica/principal.jsp");
 			System.out.println("secion cerrada con exito");
+
+		} else {
+
+			usuario = (Usuario) session.getAttribute("usuario");
+			List<Telefono> telns = new ArrayList<Telefono>();
+			for (Telefono telefono : telefonoDAO.find()) {
+				if (telefono.getUsuario().getCedula().equals(usuario.getCedula())) {
+					telns.add(telefono);
+				}
+			}
+			request.setAttribute("telefonos", telns);
+
+			getServletContext().getRequestDispatcher("/inicio_usuario.jsp").forward(request, response);
 		}
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

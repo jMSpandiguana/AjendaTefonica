@@ -9,9 +9,9 @@ import java.sql.SQLException;
 public class ContextJDBC {
 
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost:3306/agenda?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private static final String URL = "jdbc:mysql://localhost:3306/agendatelefonica?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private static final String USER = "root";
-	private static final String PASS = "pandiguana";
+	private static final String PASS = "Juanfercho451408";
 	private static ContextJDBC jdbc1 = null;
 	private static ContextJDBC jdbc2 = null;
 	private Statement statement = null;

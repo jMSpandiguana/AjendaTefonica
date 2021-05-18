@@ -46,37 +46,51 @@
 							<c:set var="telfns" scope="request" value="${telefonos}" />
 							<label id="label-1">Usuario: ${u.getNombre()}
 								${u.getApellido()}</label><br>
-							<label id="label-2">Correo: ${u.getCorreo() } <td><a href="mailto:${u.getCorreo()}" class="btn btn-success"> <i
-												class="fas fa-envelope-open-text"></i>
-										</a></td></label>
+							<label id="label-2">Correo: ${u.getCorreo() }
+								<td><a href="mailto:${u.getCorreo()}"
+									class="btn btn-success"> <i
+										class="fas fa-envelope-open-text"></i>
+								</a></td>
+							</label>
 						</div>
 						<table class="table table-striped" id="table-1">
 							<thead class="bg-dark text-white">
 								<tr>
 
-									<th>N°</th>
+									
 									<th>Número</th>
 									<th>Tipo</th>
 									<th>Operadora</th>
 									<th></th>
 									<th></th>
-									
+									<th></th>
+									<th></th>
+
 								</tr>
 							</thead>
 							<tbody>
 
 								<c:forEach var="t" items="${telfns}">
 									<tr>
-										<td>${t.codigo}</td>
+										
 										<td>${t.numero}</td>
 										<td>${t.tipo}</td>
 										<td>${t.operadora}</td>
-										<td><a href="tel:${t.numero}" class="btn btn-secondary"> <i
-												class="fas fa-phone-volume"></i>
+										<td><a href="tel:${t.numero}" class="btn btn-secondary">
+												<i class="fas fa-phone-volume"></i>
 										</a></td>
-										
-										<td><a href="editarUsuario.jsp" class="btn btn-danger"> <i
-												class="fas fa-angle-double-right"></i> Editar
+
+										<td><a href="editarUsuario.jsp" class="btn btn-danger">
+												<i class="fas fa-user-edit"></i>
+										</a></td>
+
+										<td><a href="/AgendaTelefonica/EditarTelefonoController?codigo=${t.codigo }" class="btn btn-danger">
+												<i class="fas fa-edit"></i><i class="fas fa-phone"></i>
+										</a></td>
+
+										<td><a
+											href="/AgendaTelefonica/EliminarTelefonoController?codigo=${t.codigo }"
+											class="btn btn-danger"> <i class="fas fa-trash"></i>
 										</a></td>
 									</tr>
 								</c:forEach>

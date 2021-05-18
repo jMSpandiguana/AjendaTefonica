@@ -7,15 +7,11 @@
 				</a>
 			</div>
 			<div class="col-md-3">
-				<button href="/AgendaTelefonica/RegresarControler" type="submit" class="btn btn-success btn-block">
-					<i class="fas fa-user-edit"></i> Editar
+				<button type="submit" class="btn btn-success btn-block">
+					<i class="fas fa-user-edit"></i> Editar 
 				</button>
 			</div>
-			<!--  <div class="col-md-3">
-				<button  type="submit" class="btn btn-danger btn-block">
-					<i class="fas fa-trash"></i> Eliminar
-				</button>
-			</div>-->
+		
 		</div>
 	</div>
 </section>
